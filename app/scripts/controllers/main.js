@@ -9,9 +9,26 @@
  */
 angular.module('blackjackApp')
   .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+
+    var main = this;
+
+    main.deck = [
+      {
+        suit: 'spades',
+        ranks: [1,2,3,4,5,6,7,8,9,10,11,12,13]
+      },
+      {
+        suit: 'clubs',
+        ranks: [1,2,3,4,5,6,7,8,9,10,11,12,13]
+      },
+      {
+        suit: 'hearts',
+        ranks: [1,2,3,4,5,6,7,8,9,10,11,12,13]
+      },
+      {
+        suit: 'diamonds',
+        ranks: [1,2,3,4,5,6,7,8,9,10,11,12,13]
+      }
     ];
+
   });
