@@ -1,14 +1,46 @@
-<div ng-repeat="group in main.deck">
+<div class="well" ng-repeat="player in main.table.people.players">
+  <fieldset>
+    <legend>
+      {{player.name}}
+      <button type="button"
+        class="btn btn-xs btn-primary pull-right"
+        ng-click="main.table.upCardTo(player)">
+        Pegar carta
+      </button>
+    </legend>
 
-  <div class="card {{group.suit}} rank{{rank}}"
-    ng-repeat="rank in group.ranks">
-    <div class="face"></div>
-  </div>
+    <div ng-repeat="card in player.hand.cards" class="card {{card.suit}} rank-{{card.rank}}">
+      <div class="face"></div>
+    </div>
 
-  <div class="card">
-    <div class="back"></div>
-  </div>
+    <hr>
 
-  <hr ng-if="!$last">
-
+    <div class="row">
+      <div class="col-sm-3 text-center">
+        Soma
+        <span class="label label-default">{{player.hand.sum()}}</span>
+      </div>
+      <div class="col-sm-3 text-center">
+        Bateu?
+        <span ng-switch="player.hand.isHit()">
+          <span ng-switch-when="true" class="label label-success">Sim</span>
+          <span ng-switch-when="false" class="label label-info">Não</span>
+        </span>
+      </div>
+      <div class="col-sm-3 text-center">
+        Fez Black Jack?
+        <span ng-switch="player.hand.isBlackJack()">
+          <span ng-switch-when="true" class="label label-success">Sim</span>
+          <span ng-switch-when="false" class="label label-info">Não</span>
+        </span>
+      </div>
+      <div class="col-sm-3 text-center">
+        Estourou?
+        <span ng-switch="player.hand.isBurst()">
+          <span ng-switch-when="true" class="label label-danger">Sim</span>
+          <span ng-switch-when="false" class="label label-info">Não</span>
+        </span>
+      </div>
+    </div>
+  </fieldset>
 </div>
