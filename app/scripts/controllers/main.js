@@ -18,8 +18,8 @@ angular.module('blackjackApp')
         add: function(name) {
           var player = new Player(name);
 
-          table.upCardTo(player);
-          table.upCardTo(player);
+          table.deck.upCardTo(player);
+          table.deck.upCardTo(player);
 
           this.players.push(player);
         }
@@ -34,14 +34,13 @@ angular.module('blackjackApp')
 
           return this;
         },
+        upCardTo: function(player) {
+          if (this.cards.length) {
+            player.hand.add(this.cards.shift());
+          }
+        },
         shuffle: function() {
           this.cards = _.shuffle(this.cards);
-        }
-      };
-
-      table.upCardTo = function(player) {
-        if (table.deck.cards.length) {
-          player.hand.add(table.deck.cards.shift());
         }
       };
     };
@@ -108,7 +107,7 @@ angular.module('blackjackApp')
 
     main.table = new Table();
 
-    main.table.deck.add(2).shuffle();
+    main.table.deck.add(1).shuffle();
 
     main.table.people.add('Jogador 1');
 
